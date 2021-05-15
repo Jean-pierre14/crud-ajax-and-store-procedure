@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud ajax php store procedure</title>
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
@@ -16,6 +17,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-4 mt-3">
                     <div class="card card-body">
+                        <a href="https://avatars.githubusercontent.com/u/58594917?v=4">
+                            <img src="https://avatars.githubusercontent.com/u/58594917?v=4" alt="" class="card-img-top">
+                        </a>
                         <form action="" method="post">
                             <div class="form-group">
                                 <label for="username">Username</label>
@@ -81,7 +85,14 @@
         $(document).ready(function () {
             selectUser()
             $('#action').click(function(){
-                alert('Register')
+                let username = $('#username').val()
+                let fullname = $('#fullname').val()
+
+                if(username != '' && fullname != ''){
+                    insertUser()
+                }else{
+                    alert("Some fields are empty")
+                }
             })
         })
         function selectUser(){
@@ -89,7 +100,7 @@
             $.ajax({
                 url: './config/config.php',
                 method: 'POST',
-                data: {action},
+                data: {action, username, fullname},
                 success: function(data){
                     $('#result').html(data)
                 }
