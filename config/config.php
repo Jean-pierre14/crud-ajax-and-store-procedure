@@ -6,7 +6,25 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    // insert
+    if ($_POST['action'] == 'insert') {
+        $username = mysqli_real_escape_string($con, $_POST['username']);
+        $fullname = mysqli_real_escape_string($con, $_POST['fullname']);
 
+        $procedure = "CREATE PROCEDURE insertUser(IN username varchar(100), fullname varchar(100))
+        BEGIN
+            INSERT INTO users(username, fullname) VALUES(username, fullname);
+        END;
+        ";
+        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS insertUser")) {
+            if (mysqli_query($con, $procedure)) {
+                $query = "CALL insertUser('" . $username . "', '" . $fullname . "')";
+                mysqli_query($con, $query);
+                print "Register";
+            }
+        }
+    }
+    // select
     if ($_POST['action'] == 'select') {
         $procedure = "CREATE PROCEDURE selectUser()
         BEGIN
@@ -33,7 +51,7 @@ if (isset($_POST['action'])) {
                         $output .= '
                         <tr>
                             <td>' . $row['username'] . '</td>
-                            <td>' . $row['username'] . '</td>
+                            <td>' . $row['fullname'] . '</td>
                             <td>
                                 <div class="btn-sm btn-group events">
                                     <button type"button" name="up" id="' . $row['id'] . '" class="btn btn-info">edit</buttton>

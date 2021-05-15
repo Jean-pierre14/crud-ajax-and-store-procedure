@@ -85,11 +85,20 @@
         $(document).ready(function () {
             selectUser()
             $('#action').click(function(){
-                let username = $('#username').val()
-                let fullname = $('#fullname').val()
+                let username = $('#username').val();
+                let fullname = $('#fullname').val();
 
                 if(username != '' && fullname != ''){
-                    insertUser()
+                    let action = "insert";
+                    $.ajax({
+                        url: './config/config.php',
+                        method: 'POST',
+                        data: {action, username, fullname},
+                        success: function(data){
+                            selectUser()
+                        }
+                    })
+                    alert(username + ' '+ fullname)
                 }else{
                     alert("Some fields are empty")
                 }
@@ -100,24 +109,13 @@
             $.ajax({
                 url: './config/config.php',
                 method: 'POST',
-                data: {action, username, fullname},
+                data: {action},
                 success: function(data){
                     $('#result').html(data)
                 }
             })
         }
 
-        function insertUser(){
-            let action = "insert"
-            $.ajax({
-                url: '',
-                method: '',
-                data: {action, username, fullname},
-                success: function(data){
-                    selectUser()
-                }
-            })
-        }
     </script>
 </body>
 
