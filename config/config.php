@@ -54,8 +54,8 @@ if (isset($_POST['action'])) {
                             <td>' . $row['fullname'] . '</td>
                             <td>
                                 <div class="btn-group events">
-                                    <button type"button" name="up" id="' . $row['id'] . '" class="btn btn-sm btn-info">edit</buttton>
-                                    <button type"button" name="del" id="' . $row['id'] . '" class="btn btn-sm btn-danger">Delete</buttton>
+                                    <button id="' . $row['id'] . '" class="update btn btn-sm btn-info">edit</buttton>
+                                    <button  id="' . $row['id'] . '" class="delete btn btn-sm btn-danger">Delete</buttton>
                                 </div>
                             </td>
                         </tr>
@@ -82,17 +82,24 @@ if (isset($_POST['action'])) {
 
     // GetUser
     if ($_POST['action'] == 'getUser') {
+        $idGet = mysqli_real_escape_string($con, $_POST['id']);
         $datas = array();
-        $procedure = "CREATE PROCEDURE getUser(IN id int(11))
+        $procedure = "CREATE PROCEDURE getUser(IN idGet int(11))
         BEGIN
-            SELECT * FROM users WHERE id = id;
+            SELECT * FROM users WHERE id = idGet;
         END;
         ";
         if (mysqli_query($con, "DROP PROCEDURE IF EXISTS getUser")) {
             if (mysqli_query($con, $procedure)) {
-                $query = "CALL getUser('" . $id . "')";
+                $query = "CALL getUser('" . $idGet . "')";
                 $res = mysqli_query($con, $query);
+
+                while ($row = mysqli_fetch_array($res)) {
+                    $datas['username'] = $row['username'];
+                    $datas['fullname'] = $row['fullname'];
+                }
             }
         }
+        print json_encode($datas);
     }
 }
