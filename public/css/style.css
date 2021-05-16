@@ -1,0 +1,12 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.events{
+    visibility: hidden;
+    transition: 0.3s;
+}
+table tr:hover .events{
+    visibility: visible;
+}

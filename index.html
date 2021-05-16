@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud ajax php store procedure</title>
+    <link rel="stylesheet" href="./public/css/style.css">
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
@@ -33,7 +34,8 @@
                             </div>
                             <div class="form-group mt-2">
                                 <input type="hidden" id="id" name="id_u">
-                                <button name="register" type="button" id="action" class="btn btn-success">Register</button>
+                                <button name="register" type="button" id="action"
+                                    class="btn btn-success">Register</button>
                             </div>
                         </form>
                     </div>
@@ -71,7 +73,7 @@
                                         <th>Events</th>
                                     </tr>
                                 </tfoot>
-    
+
                             </table>
                         </div>
                     </div>
@@ -84,33 +86,33 @@
     <script>
         $(document).ready(function () {
             selectUser()
-            $('#action').click(function(){
+            $('#action').click(function () {
                 let username = $('#username').val();
                 let fullname = $('#fullname').val();
 
-                if(username != '' && fullname != ''){
+                if (username != '' && fullname != '') {
                     let action = "insert";
                     $.ajax({
                         url: './config/config.php',
                         method: 'POST',
-                        data: {action, username, fullname},
-                        success: function(data){
+                        data: { action, username, fullname },
+                        success: function (data) {
                             selectUser()
                         }
                     })
-                    alert(username + ' '+ fullname)
-                }else{
+                    alert(username + ' ' + fullname)
+                } else {
                     alert("Some fields are empty")
                 }
             })
         })
-        function selectUser(){
+        function selectUser() {
             let action = "select"
             $.ajax({
                 url: './config/config.php',
                 method: 'POST',
-                data: {action},
-                success: function(data){
+                data: { action },
+                success: function (data) {
                     $('#result').html(data)
                 }
             })

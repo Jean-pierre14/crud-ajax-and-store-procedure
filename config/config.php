@@ -53,9 +53,9 @@ if (isset($_POST['action'])) {
                             <td>' . $row['username'] . '</td>
                             <td>' . $row['fullname'] . '</td>
                             <td>
-                                <div class="btn-sm btn-group events">
-                                    <button type"button" name="up" id="' . $row['id'] . '" class="btn btn-info">edit</buttton>
-                                    <button type"button" name="del" id="' . $row['id'] . '" class="btn btn-danger">Delete</buttton>
+                                <div class="btn-group events">
+                                    <button type"button" name="up" id="' . $row['id'] . '" class="btn btn-sm btn-info">edit</buttton>
+                                    <button type"button" name="del" id="' . $row['id'] . '" class="btn btn-sm btn-danger">Delete</buttton>
                                 </div>
                             </td>
                         </tr>
