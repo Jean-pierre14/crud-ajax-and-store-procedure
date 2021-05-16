@@ -36,7 +36,7 @@ if (isset($_POST['action'])) {
                 $query = "CALL selectUser()";
                 $res = mysqli_query($con, $query);
                 $output .= '
-                <table class="table table-sm">
+                <table class="mt-2 table table-sm table-bordered table-responsive-sm table-striped">
                     <thead>
                         <tr>
                             <th width="30%">Username</th>
@@ -78,5 +78,21 @@ if (isset($_POST['action'])) {
             }
         }
         print $output;
+    }
+
+    // GetUser
+    if ($_POST['action'] == 'getUser') {
+        $datas = array();
+        $procedure = "CREATE PROCEDURE getUser(IN id int(11))
+        BEGIN
+            SELECT * FROM users WHERE id = id;
+        END;
+        ";
+        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS getUser")) {
+            if (mysqli_query($con, $procedure)) {
+                $query = "CALL getUser('" . $id . "')";
+                $res = mysqli_query($con, $query);
+            }
+        }
     }
 }
