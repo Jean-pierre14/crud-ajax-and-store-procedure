@@ -5,7 +5,7 @@ $(document).ready(function() {
         jQuery('#form').append(`<div class="form-group" id="row${i}">
                 <label for="name">Name</label>
                 <input type="text" name="name[]" class="form-control" placeholder="Entre the name">
-                <button type="button" class="btn_remove" id="${i}">Remove</button>
+                <button type="button" class="btn btn-sm btn-danger btn_remove" id="${i}">Remove</button>
             </div>`);
     })
     $(document).on('click', '.btn_remove', function() {
