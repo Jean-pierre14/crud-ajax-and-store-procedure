@@ -118,6 +118,11 @@ if (isset($_POST['action'])) {
             if (mysqli_query($con, $procedure)) {
                 $query = "CALL updateUser('" . $UserName . "','" . $FullName . "','" . $ID . "')";
                 $res = mysqli_query($con, $res);
+                if ($res) {
+                    print 'success';
+                } else {
+                    print 'error';
+                }
             }
         }
     }
