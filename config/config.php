@@ -95,11 +95,30 @@ if (isset($_POST['action'])) {
                 $res = mysqli_query($con, $query);
 
                 while ($row = mysqli_fetch_array($res)) {
+                    $datas['id'] = $row['id'];
                     $datas['username'] = $row['username'];
                     $datas['fullname'] = $row['fullname'];
                 }
             }
         }
         print json_encode($datas);
+    }
+    // Update
+    if ($_POST['action'] == 'update') {
+        $ID = $_POST['id'];
+        $UserName = mysqli_real_escape_string($con, trim(htmlentities($_POST['username'])));
+        $FullName = mysqli_real_escape_string($con, trim(htmlentities($_POST['fullname'])));
+
+        $procedure = "CREATE PROCEDURE updateUser(IN username VARCHAR(50), fullname VARCHAR(100), id int(11))
+        BEGIN
+            UPDATE users SET username = UserName, fullname = FullName WHERE id = ID;
+        END
+        ";
+        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS update")) {
+            if (mysqli_query($con, $procedure)) {
+                $query = "CALL updateUser('" . $UserName . "','" . $FullName . "','" . $ID . "')";
+                $res = mysqli_query($con, $res);
+            }
+        }
     }
 }

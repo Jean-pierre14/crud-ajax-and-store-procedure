@@ -27,6 +27,7 @@
                         </a>
                         <form action="" method="post">
                             <div class="form-group">
+                                <input type="hidden" id="userID" placeholder="User Id" class="form-control">
                                 <label for="username">Username</label>
                                 <input type="text" name="username" id="username" value="" placeholder="Username" class="form-control">
                             </div>
@@ -36,7 +37,8 @@
                             </div>
                             <div class="form-group mt-2">
                                 <input type="hidden" id="id_user" name="id_u">
-                                <button name="register" type="button" id="action" class="btn btn-success">Register</button>
+                                <button name="register" type="button" id="action" class="UpUser btn btn-success">Register</button>
+                                <button name="register" type="button" id="update" class="btn btn-success" style="display: none">Update</button>
                             </div>
                         </form>
                     </div>
@@ -104,7 +106,6 @@
                             selectUser()
                         }
                     })
-                    alert(username + ' ' + fullname)
                 } else {
                     alert("Some fields are empty")
                 }
@@ -112,7 +113,6 @@
             $(document).on('click', '.update', function() {
                 let id = $(this).attr('id')
                 let action = 'getUser'
-
                 $.ajax({
                     url: './config/config.php',
                     method: 'POST',
@@ -123,11 +123,43 @@
                     dataType: 'json',
                     success: function(data) {
                         $('#id_user').val(id)
+                        $('#userID').val(data.id)
                         $('#username').val(data.username)
                         $('#fullname').val(data.fullname)
-                        $('#action').text('Update ' + data.username)
+                            // $('#action').text('Update ' + data.username)
+                        $('#action').hide()
+                        $('#update').show()
                     }
                 })
+            })
+            $(document).on('click', '#update', function() {
+                let action = 'update'
+                let id = $('#userID').val()
+                let username = $('#username').val()
+                let fullname = $('#fullname').val()
+                if (!username || !fullname || username === undefined || username === '' || username.length < 2 || fullname === undefined) {
+                    $('#error').html('<p class="alert alert-danger alert-dismissible">Field in all fields</p>')
+                } else {
+                    $.ajax({
+                        url: './config/config.php',
+                        method: 'POST',
+                        data: {
+                            action,
+                            id,
+                            username,
+                            fullname
+                        },
+                        success: function(data) {
+                            if (data === 'success') {
+                                $('#update').hide()
+                                $('#action').show()
+                                selectUser()
+                            } else {
+                                $('#error').html('<p>Error</p>');
+                            }
+                        }
+                    })
+                }
             })
         })
 
