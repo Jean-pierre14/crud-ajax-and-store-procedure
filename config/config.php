@@ -115,8 +115,28 @@ if (isset($_POST['action'])) {
         END
         ";
         if (mysqli_query($con, "DROP PROCEDURE IF EXISTS updateUser")) {
+
             if (mysqli_query($con, $procedure)) {
                 $query = "CALL updateUser('" . $_POST['id'] . "','" . $UserName . "','" . $FullName . "')";
+                $res = mysqli_query($con, $query);
+                if ($res) {
+                    print 'success';
+                } else {
+                    print 'error';
+                }
+            }
+        }
+    }
+    if ($_POST['action'] == 'delete') {
+
+        $procedure = "CREATE PROCEDURE deleteUser(IN user_Id int(11))
+        BEGIN
+            DELETE FROM users WHERE id = user_Id;
+        END
+        ";
+        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS deleteUser")) {
+            if (mysqli_query($con, $procedure)) {
+                $query = "CALL deleteUser('" . $_POST['id'] . "')";
                 $res = mysqli_query($con, $query);
                 if ($res) {
                     print 'success';
