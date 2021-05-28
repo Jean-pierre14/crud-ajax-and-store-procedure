@@ -104,11 +104,14 @@
                             fullname
                         },
                         success: function(data) {
+                            $('#error').html('')
+                            $('#username').val('')
+                            $('#fullname').val('')
                             selectUser()
                         }
                     })
                 } else {
-                    alert("Some fields are empty")
+                    $('#error').html('<p class="alert alert-danger">Something does wrong</p>')
                 }
             })
             $(document).on('click', '.update', function() {
@@ -152,6 +155,8 @@
                         },
                         success: function(data) {
                             if (data === 'success') {
+                                $('#username').val('')
+                                $('#fullname').val('')
                                 $('#update').hide()
                                 $('#action').show()
                                 selectUser()

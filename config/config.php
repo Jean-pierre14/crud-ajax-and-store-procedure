@@ -109,15 +109,15 @@ if (isset($_POST['action'])) {
         $UserName = mysqli_real_escape_string($con, trim(htmlentities($_POST['username'])));
         $FullName = mysqli_real_escape_string($con, trim(htmlentities($_POST['fullname'])));
 
-        $procedure = "CREATE PROCEDURE updateUser(IN username VARCHAR(50), fullname VARCHAR(100), id int(11))
+        $procedure = "CREATE PROCEDURE updateUser(IN user_id int(11), username VARCHAR(100), fullname VARCHAR(100))
         BEGIN
-            UPDATE users SET username = UserName, fullname = FullName WHERE id = ID;
+            UPDATE users SET username = username, fullname = fullname WHERE id = user_id;
         END
         ";
-        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS update")) {
+        if (mysqli_query($con, "DROP PROCEDURE IF EXISTS updateUser")) {
             if (mysqli_query($con, $procedure)) {
-                $query = "CALL updateUser('" . $UserName . "','" . $FullName . "','" . $ID . "')";
-                $res = mysqli_query($con, $res);
+                $query = "CALL updateUser('" . $_POST['id'] . "','" . $UserName . "','" . $FullName . "')";
+                $res = mysqli_query($con, $query);
                 if ($res) {
                     print 'success';
                 } else {
