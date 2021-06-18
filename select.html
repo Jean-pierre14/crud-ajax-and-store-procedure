@@ -15,5 +15,14 @@
         <option value="not married">not Married</option>
     </select>
 </body>
+<script src="./public/js/jquery-3.4.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $("#select").keyup(function() {
+            let data = $(this).val()
+            alert(data)
+        })
+    })
+</script>
 
 </html>
