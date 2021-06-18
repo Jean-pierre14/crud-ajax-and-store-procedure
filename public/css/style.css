@@ -12,6 +12,12 @@ table tr:hover .events {
     visibility: visible;
 }
 
+.form-control {
+    position: relative;
+    padding: 8px 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 .none {
     position: relative;
     display: none;
