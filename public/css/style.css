@@ -29,3 +29,36 @@ table tr:hover .events {
     padding: 10px;
     border-radius: 4px;
 }
+
+.none form {
+    position: relative;
+    display: block;
+    width: 90%;
+    padding: 10px;
+    margin: 10px auto;
+    color: #333;
+    background: #fff;
+    border-radius: 4px;
+    align-items: center;
+    align-content: center;
+}
+
+.none form .group {
+    position: relative;
+}
+
+.none form .group label,
+.none form input {
+    position: relative;
+    display: block;
+}
+
+.none form input {
+    position: relative;
+    display: block;
+    padding: 10px;
+    border: none;
+    outline: none;
+    border: 1px solid #333;
+    border-radius: 4px;
+}

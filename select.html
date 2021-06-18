@@ -19,6 +19,16 @@
         <p>
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere repudiandae praesentium obcaecati architecto inventore distinctio atque nisi doloremque ipsam beatae asperiores, saepe sunt provident cum! Quaerat sequi adipisci eum fuga?
         </p>
+        <form action="">
+            <div class="group">
+                <label for="num">Number</label>
+                <input type="text" name="num" id="num" placeholder="Enter the number">
+            </div>
+            <div id="add"></div>
+            <button type="submit">
+                Submit
+            </button>
+        </form>
     </div>
 </body>
 <script src="./public/js/jquery-3.4.0.min.js"></script>
@@ -31,7 +41,23 @@
             } else {
                 $('.none').hide()
             }
-
+        })
+        $('#num').keyup(function() {
+            let u = $(this).val()
+            if (u != '') {
+                if (u > 5) {
+                    alert("The number can't go above 5")
+                } else {
+                    for (i = 1; i <= u; i++) {
+                        $('#add').append(`<div class="group">
+                <label for="name${i}">Name ${i}</label>
+                <input type="text" name="name[${i}]" id="name${i}" placeholder="Enter the number">
+            </div>`)
+                    }
+                }
+            } else {
+                $('#add').html('')
+            }
         })
     })
 </script>
