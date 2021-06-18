@@ -1,12 +1,18 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
 
-.events{
+.events {
     visibility: hidden;
     transition: 0.3s;
 }
-table tr:hover .events{
+
+table tr:hover .events {
     visibility: visible;
+}
+
+.none {
+    position: relative;
+    display: none;
 }
