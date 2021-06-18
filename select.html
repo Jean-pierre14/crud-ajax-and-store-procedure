@@ -26,7 +26,12 @@
     $(document).ready(function() {
         $('#select').change(function() {
             let d = $(this).val()
-            alert(d)
+            if (d === 'married') {
+                $(".none").show()
+            } else {
+                $('.none').hide()
+            }
+
         })
     })
 </script>
