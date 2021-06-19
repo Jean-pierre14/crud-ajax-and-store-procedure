@@ -22,10 +22,10 @@
         <form action="">
             <div class="group">
                 <label for="num">Number</label>
-                <input type="text" name="num" id="num" placeholder="Enter the number">
+                <input type="text" autocomplete="off" name="num" id="num" placeholder="Enter the number">
             </div>
             <div id="add"></div>
-            <button type="submit">
+            <button type="button" class="button">
                 Submit
             </button>
         </form>
@@ -59,6 +59,21 @@
             } else {
                 $('#add').html('')
             }
+        })
+        $('#submit').click(function() {
+            let action = 'array'
+            $.ajax({
+                url: './config/config.php',
+                method: 'POST',
+                data: $('#myform').serialize(),
+                success: function(data) {
+                    if (data === 'success') {
+                        $('#add').html('Success')
+                    } else {
+                        $('#add').html('Error from bakend')
+                    }
+                }
+            })
         })
     })
 </script>
