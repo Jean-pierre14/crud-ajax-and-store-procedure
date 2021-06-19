@@ -46,8 +46,9 @@
             let u = $(this).val()
             if (u != '') {
                 if (u > 5) {
-                    alert("The number can't go above 5")
+                    $('#add').html('<p class="msg red">The number can\'t go above 5</p>')
                 } else {
+                    $('#add').html('')
                     for (i = 1; i <= u; i++) {
                         $('#add').append(`<div class="group">
                 <label for="name${i}">Name ${i}</label>

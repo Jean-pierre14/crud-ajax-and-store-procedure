@@ -62,3 +62,17 @@ table tr:hover .events {
     border: 1px solid #333;
     border-radius: 4px;
 }
+
+.msg {
+    width: 100%;
+    display: block;
+    padding: 10px;
+    margin: 8px 0;
+    border-radius: 4px;
+}
+
+.red {
+    background-color: rgba(255, 102, 102, 0.479);
+    color: red;
+    border: 2px solid red;
+}
