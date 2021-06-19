@@ -6,6 +6,24 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if ($_POST['action'] == 'array') {
+        $num = count($_POST['name']);
+
+        if ($num > 1) {
+            for ($i = 0; $i < $num; $i++) {
+
+                if (trim($_POST['name'][$i]) != '') {
+
+                    $sql = mysqli_query($con, "INSERT INTO children(`name`) VALUES('" . $_POST['name'][$i] . "')");
+                    if ($sql) {
+                        print "success";
+                    } else {
+                        print 'error ' . mysqli_error();
+                    }
+                }
+            }
+        }
+    }
     // insert
     if ($_POST['action'] == 'insert') {
         $username = mysqli_real_escape_string($con, $_POST['username']);
