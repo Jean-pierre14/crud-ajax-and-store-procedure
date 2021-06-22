@@ -8,23 +8,65 @@
     <title>Crud ajax php store procedure</title>
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="alert alert-success">
+        <div class="alert alert-success my-2">
             <h2>Attendance App</h2>
         </div>
         <div class="mt-2">
             <form action="" method="post">
                 <input type="search" id="search" placeholder="Search..." class="form-control">
             </form>
-            <div id="result"></div>
+            <div class="m-2" style="margin-top: 10px;">
+                <div class="card card-default">
+                    <div class="card-header">
+                        <h4>Data
+                            <div id="today"></div>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="result">
+                            <div class="list-group mt-2">
+                                <li href="#" class="list-group-item d-flex justify-content-between align-items-center">First item
+                                    <span class="badge badge-success">23</span>
+                                </li>
+                                <a href="#" class="list-group-item">Second item</a>
+                                <a href="#" class="list-group-item">Third item</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            let today = new Date()
+            let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+            const nowIs = today.getDate() + "/" + month[today.getMonth()] + "/" + today.getFullYear()
+            $('#today').html(`<span class="badge badge-success">${nowIs}</span>`)
+
+            fetch()
+        })
+
+        function fetch() {
+            $.ajax({
+                url: './config/config.php',
+                method: 'POST',
+                data: {
+                    action: 'attendance'
+                },
+                success: function(data) {
+                    $('#result').html(data)
+                }
+            })
+        }
+    </script>
 
 </body>
 

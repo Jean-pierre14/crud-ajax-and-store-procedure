@@ -6,6 +6,26 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if ($_POST['action'] == 'attendance') {
+        $sql = mysqli_query($con, "SELECT * FROM users ORDER BY id DESC");
+        if (@mysqli_num_rows($sql) > 0) {
+            $output .= '<div class="list-group mt-2">';
+
+            while ($row = mysqli_fetch_array($sql)) {
+                $output .= '
+                <li href="#" class="list-group-item d-flex justify-content-between align-items-center">' . $row['fullname'] . '
+                    <div class="btn-group delete">
+                        <button class="btn btn-sm btn-success">Approuved</button>
+                        <button class="btn btn-sm btn-danger">Not Approuved</button>
+                    </div>
+                </li>';
+            }
+            $output .= '</div>';
+        } else {
+            $output .= '<p class="alert alert-danger">There no data</p>';
+        }
+        print $output;
+    }
     if ($_POST['action'] == 'array') {
         $num = count($_POST['name']);
 
