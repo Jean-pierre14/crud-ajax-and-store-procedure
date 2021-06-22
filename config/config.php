@@ -38,7 +38,7 @@ if (isset($_POST['action'])) {
                     if ($sql) {
                         print "success";
                     } else {
-                        print 'error ' . mysqli_error();
+                        print 'error ';
                     }
                 }
             }
