@@ -9,16 +9,29 @@ if (isset($_POST['action'])) {
     if ($_POST['action'] == 'attendance') {
         $sql = mysqli_query($con, "SELECT * FROM users ORDER BY id DESC");
         if (@mysqli_num_rows($sql) > 0) {
+            $sql2 = mysqli_query($con, "SELECT * FROM attendance");
+            $data = @mysqli_fetch_array($sql2);
+
             $output .= '<div class="list-group mt-2">';
 
             while ($row = mysqli_fetch_array($sql)) {
-                $output .= '
-                <li href="#" class="list-group-item d-flex justify-content-between align-items-center">' . $row['fullname'] . '
+                if ($row['id'] == $data['users_id']) :
+                    $output .= '
+                <li href="#" class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '
                     <div class="btn-group delete">
-                        <button class="btn btn-sm btn-success">Approuved</button>
-                        <button class="btn btn-sm btn-danger">Not Approuved</button>
+                        <button type="button" class="btn btn-sm btn-success approuved" id="' . $row['id'] . '">Approuved</button>
+                        <button type="button" class="btn btn-sm btn-danger">Not Approuved</button>
                     </div>
                 </li>';
+                else :
+                    $output .= '
+                    <li href="#" class="list-group-item d-flex justify-content-between align-items-center">' . $row['fullname'] . '
+                        <div class="btn-group delete">
+                            <button class="btn btn-sm btn-success">Approuved</button>
+                            <button class="btn btn-sm btn-danger">Not Approuved</button>
+                        </div>
+                    </li>';
+                endif;
             }
             $output .= '</div>';
         } else {
