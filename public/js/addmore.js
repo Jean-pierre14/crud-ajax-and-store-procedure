@@ -25,6 +25,18 @@ $(document).ready(function () {
             }
         })
     })
+    $('#yesDeleteAll').click(function () {
+
+        $.ajax({
+            url: './config/config.php',
+            method: 'POST',
+            data: { action: 'yesDeleteAll' },
+            success: function (data) {
+                Resultats();
+                $('#error').html(data)
+            }
+        })
+    })
     usersId()
     Resultats()
 })

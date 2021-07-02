@@ -6,6 +6,12 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if($_POST['action'] == 'yesDeleteAll'){
+        $sql = mysqli_query($con, "DELETE FROM children");
+        if($sql){
+            print '<p class="alert alert-danger">Data deleted :)</p>';
+        }
+    }
     if($_POST['action'] == 'resultats'){
         $limit = $_POST['limit'];
         $sql = mysqli_query($con, "SELECT * FROM children ORDER BY id DESC LIMIT $limit");
