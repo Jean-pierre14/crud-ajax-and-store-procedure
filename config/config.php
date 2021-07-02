@@ -6,6 +6,39 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if($_POST['action'] == 'resultats'){
+        $limit = $_POST['limit'];
+        $sql = mysqli_query($con, "SELECT * FROM children ORDER BY id DESC LIMIT $limit");
+        if(@mysqli_num_rows($sql) > 0){
+            $output .= '<ul class="list-group">';
+            while($row = mysqli_fetch_array($sql)){
+                $output .= '<li id="'.$row['id'].'" class="list-group-item list-group-item-success d-flex justify-content-between align-items-center list-group-item-action">
+                    <span>'.$row['name'].'</span>
+                    <span class="badge badge-primary badge-pill text-secondary">'.$row['users_id'].'</span>
+                </li>';
+            }
+            $output .= '</ul>';
+        }else{
+            $output .= '<p class="alert alert-secondary">There is no data regsitered</p>';
+        }
+        print $output;
+    }
+    if($_POST['action'] == 'usersId'){
+        
+        $sql = mysqli_query($con, "SELECT id, username FROM users ORDER BY `username` ASC");
+
+        if(@mysqli_num_rows($sql) > 0){
+            $output .= '<select name="user_id" class="form-control">
+            <option value="">-- Select --</option>';
+            while($row = mysqli_fetch_array($sql)){
+                $output .= '<option value="'.$row['id'].'">'.$row['username'].'</option>';
+            }
+            $output .= '</select>';
+        }else{
+            $output .= '<p class="alert alert-danger p-1 text-center>There is no user registered</p>';
+        }
+        print $output;
+    }
     if ($_POST['action'] == 'attendance') {
         $sql = mysqli_query($con, "SELECT * FROM users ORDER BY id DESC");
         if (@mysqli_num_rows($sql) > 0) {

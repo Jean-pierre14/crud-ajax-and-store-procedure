@@ -23,6 +23,8 @@
             <div class="col-md-4">
                 <div class="card card-body">
                     <form action="" id="myForm">
+                        <div id="error"></div>
+                        <div id="usersId"></div>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input type="text" name="name[]" class="form-control" placeholder="Entre the name">
@@ -31,6 +33,8 @@
                         <div class="btn-group mt-3">
                             <button id="addmore" type="button" class="btn btn-sm btn-info">Add</button>
                             <button id="submit" type="button" class="btn btn-sm btn-success">submit</button>
+                            <button id="deleteAll" type="button" class="btn btn-sm btn-danger" data-toggle="modal"
+                                data-target="#myModal">Delete all</button>
                         </div>
                     </form>
                 </div>
@@ -42,7 +46,30 @@
             </div>
         </div>
     </div>
+
+    <div class="modal" id="myModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">System message</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <div class="modal-body">
+                    <h4 class="text-center">Do you want to delete all data within this table?</h4>
+                    <button class="btn btn-danger btn-sm" id="yes">Yes</button>
+                    <button class="btn btn-danger btn-sm" id="yes">Cancel</button>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
     <script src="./public/js/jquery-3.4.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="./public/js/addmore.js"></script>
 </body>
 
