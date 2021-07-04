@@ -10,7 +10,7 @@
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
-
+<!-- AIzaSyDfsrBR4BN3ZknC21eDw2yrDHkJBk0gaMM Map key -->
 <body>
     <div class="container-fluid">
         <div class="btn-group my-3">
@@ -42,6 +42,9 @@
                                 <button name="register" type="button" id="update" class="btn btn-warning" style="display: none">Update</button>
                             </div>
                         </form>
+                    </div>
+                    <div ,class="card card-body">
+                        <div id="map"></div>
                     </div>
                     <div class="my-2 card card-body">
                         <h3>Thank you</h3>
@@ -95,6 +98,16 @@
             </div>
         </div>
     </div>
+    <script>
+        function initMap(){
+            let options = {
+                zoom: 8,
+                center: {lat: 42.3601, lng: -71.0589}
+            }
+            let map = new google.maps.Map(document.getElementById('map', options))
+        }
+    </script>
+    <script async defer src="https://maps.google.com/api/js?key=AIzaSyDfsrBR4BN3ZknC21eDw2yrDHkJBk0gaMM&callback=initMap"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
         $(document).ready(function() {
