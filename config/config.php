@@ -14,7 +14,7 @@ if (isset($_POST['action'])) {
     }
     if($_POST['action'] == 'resultats'){
         $limit = $_POST['limit'];
-        $sql = mysqli_query($con, "SELECT * FROM children ORDER BY id DESC LIMIT $limit");
+        $sql = mysqli_query($con, "SELECT * FROM children ORDER BY `name` ASC LIMIT $limit");
         if(@mysqli_num_rows($sql) > 0){
             $output .= '<ul class="list-group">';
             while($row = mysqli_fetch_array($sql)){
