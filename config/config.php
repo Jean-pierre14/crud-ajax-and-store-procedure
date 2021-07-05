@@ -6,7 +6,11 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
-    if($_POST['action'] == '')
+    if($_POST['action'] == 'count'){
+        $sql = mysqli_query($con, "SELECT COUNT(id) AS countId FROM children");
+        $row = mysqli_fetch_array($sql);
+        print '<span class="btn btn-sm btn-success">'.$row['countId'].'</span>';
+    }
     if($_POST['action'] == 'yesDeleteAll'){
         $sql = mysqli_query($con, "DELETE FROM children");
         if($sql){

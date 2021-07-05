@@ -21,7 +21,8 @@ $(document).ready(function () {
                 $('#error').html(data)
                 $('#myForm')[0].reset()
                 $('#form').html('')
-                Resultats()
+                Resultats();
+                count();
             }
         })
     })
@@ -33,12 +34,14 @@ $(document).ready(function () {
             data: { action: 'yesDeleteAll' },
             success: function (data) {
                 Resultats();
+                count()
                 $('#error').html(data)
             }
         })
     })
     usersId()
     Resultats()
+    count()
 })
 
 function count() {
