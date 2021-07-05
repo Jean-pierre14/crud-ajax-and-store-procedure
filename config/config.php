@@ -6,6 +6,7 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if($_POST['action'] == '')
     if($_POST['action'] == 'yesDeleteAll'){
         $sql = mysqli_query($con, "DELETE FROM children");
         if($sql){

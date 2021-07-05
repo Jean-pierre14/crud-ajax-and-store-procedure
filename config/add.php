@@ -5,9 +5,7 @@ $con = mysqli_connect("localhost", "root", "", "crudajax") or die("couldn't conn
 $num = count($_POST['name']);
 $id = $_POST['user_id'];
 
-if(empty($_POST['name'])){
-    print 'error';
-}else{
+
     if ($num > 1) {
         for ($i = 0; $i < $num; $i++) {
     
@@ -21,6 +19,6 @@ if(empty($_POST['name'])){
     } else {
         print 'error';
     }
-}
+
 
 

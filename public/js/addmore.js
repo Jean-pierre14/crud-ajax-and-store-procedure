@@ -41,6 +41,18 @@ $(document).ready(function () {
     Resultats()
 })
 
+function count() {
+    let action = 'count'
+    $.ajax({
+        url: './config/config.php',
+        method: 'POST',
+        data: { action },
+        success: function (data) {
+            $('#count').html(data)
+        }
+    })
+}
+
 function Resultats() {
     let action = 'resultats'
     let limit = 10
