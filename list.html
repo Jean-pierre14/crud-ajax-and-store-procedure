@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crud ajax php store procedure</title>
+    <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
+</head>
+
+<body>
+    <div class="container">
+        <div class="row justify-content-center my-2">
+            <div class="col-md-4">
+                <div id="results"></div>
+            </div>
+            <div class="col-md-4">
+                <div id="attended"></div>
+            </div>
+        </div>
+    </div>
+    <script src="./public/js/jquery-3.4.0.min.js"></script>
+    <script>
+        select()
+        $(document).on("click", ".yes", function () {
+            let id = $(this).attr('id')
+            $.ajax({
+                url: './config/attendance.php',
+                method: 'post',
+                data: { action: "yes", id },
+                success: function (data) {
+                    select()
+                }
+            })
+        })
+        function select() {
+            $.ajax({
+                url: './config/attendance.php',
+                method: 'POST',
+                data: { action: 'select' },
+                success: function (data) {
+                    $("#results").html(data)
+                }
+            })
+        }
+    </script>
+</body>
+
+</html>

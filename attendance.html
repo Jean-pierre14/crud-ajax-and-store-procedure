@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crud ajax php store procedure</title>
     <link rel="stylesheet" href="./public/css/style.css">
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
@@ -30,7 +31,8 @@
                     <div class="card-body">
                         <div id="result">
                             <div class="list-group mt-2">
-                                <li href="#" class="list-group-item d-flex justify-content-between align-items-center">First item
+                                <li href="#" class="list-group-item d-flex justify-content-between align-items-center">
+                                    First item
                                     <span class="badge badge-success">23</span>
                                 </li>
                                 <a href="#" class="list-group-item">Second item</a>
@@ -45,15 +47,16 @@
     <script src="./public/js/jquery-3.4.0.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             let today = new Date()
             let month = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
             const nowIs = today.getDate() + "/" + month[today.getMonth()] + "/" + today.getFullYear()
             $('#today').html(`<span class="badge badge-success">${nowIs}</span>`)
 
             fetch()
-            $(document).on('click', '.approuved', function() {
-                alert("Click")
+            jQuery(document).on('click', '.approuved', function () {
+                let id = $(this).attr(id)
+                alert(id)
             })
         })
 
@@ -64,7 +67,7 @@
                 data: {
                     action: 'attendance'
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#result').html(data)
                 }
             })
