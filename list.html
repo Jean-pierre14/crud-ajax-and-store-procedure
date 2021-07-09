@@ -33,9 +33,21 @@
                 data: { action: "yes", id },
                 success: function (data) {
                     select()
+                    attended()
                 }
             })
         })
+        attended()
+        function attended() {
+            $.ajax({
+                url: './config/attendance.php',
+                method: 'POST',
+                data: { action: 'attended' },
+                success: function (data) {
+                    $("#attended").html(data)
+                }
+            })
+        }
         function select() {
             $.ajax({
                 url: './config/attendance.php',
