@@ -8,14 +8,17 @@
     <title>Crud ajax php store procedure</title>
     <link rel="stylesheet" href="./public/css/style.css">
     <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
 </head>
 <!-- AIzaSyDfsrBR4BN3ZknC21eDw2yrDHkJBk0gaMM Map key -->
+
 <body>
     <div class="container-fluid">
         <div class="btn-group my-3">
             <a href="index.html" class="btn btn-success btn-link active">/Home</a>
             <a href="addMore.html" class="btn btn-link">/Add more </a>
+            <a href="attendance.html" class="btn btn-link">/attendance </a>
             <a href="add.html" class="btn btn-link">/Add serialize </a>
         </div>
         <div class="container">
@@ -30,16 +33,20 @@
                             <div class="form-group">
                                 <input type="hidden" id="userID" placeholder="User Id" class="form-control">
                                 <label for="username">Username</label>
-                                <input type="text" name="username" id="username" value="" placeholder="Username" class="form-control">
+                                <input type="text" name="username" id="username" value="" placeholder="Username"
+                                    class="form-control">
                             </div>
                             <div class="form-group">
                                 <label for="fullname">Fullname</label>
-                                <input type="text" name="fullname" id="fullname" placeholder="Fullname" value="" class="form-control">
+                                <input type="text" name="fullname" id="fullname" placeholder="Fullname" value=""
+                                    class="form-control">
                             </div>
                             <div class="form-group mt-2">
                                 <input type="hidden" id="id_user" name="id_u">
-                                <button name="register" type="button" id="action" class="UpUser btn btn-success">Register</button>
-                                <button name="register" type="button" id="update" class="btn btn-warning" style="display: none">Update</button>
+                                <button name="register" type="button" id="action"
+                                    class="UpUser btn btn-success">Register</button>
+                                <button name="register" type="button" id="update" class="btn btn-warning"
+                                    style="display: none">Update</button>
                             </div>
                         </form>
                     </div>
@@ -49,7 +56,8 @@
                     <div class="my-2 card card-body">
                         <h3>Thank you</h3>
                         <p>
-                            This project can help you to undestand HTML and CSS with <b>Bootstrap4</b>. We use <b>Jquery Ajax method</b> to send and get data.
+                            This project can help you to undestand HTML and CSS with <b>Bootstrap4</b>. We use <b>Jquery
+                                Ajax method</b> to send and get data.
                         </p>
                         <p>
                             To the <b>Back-end</b> or <b>Server</b> PHP and <b>Mysql</b>
@@ -99,20 +107,22 @@
         </div>
     </div>
     <script>
-        function initMap(){
+        function initMap() {
             let options = {
                 zoom: 8,
-                center: {lat: 42.3601, lng: -71.0589}
+                center: { lat: 42.3601, lng: -71.0589 }
             }
             let map = new google.maps.Map(document.getElementById('map', options))
         }
     </script>
-    <script async defer src="https://maps.google.com/api/js?key=AIzaSyDfsrBR4BN3ZknC21eDw2yrDHkJBk0gaMM&callback=initMap"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script async defer
+        src="https://maps.google.com/api/js?key=AIzaSyDfsrBR4BN3ZknC21eDw2yrDHkJBk0gaMM&callback=initMap"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             selectUser()
-            $('#action').click(function() {
+            $('#action').click(function () {
                 let username = $('#username').val();
                 let fullname = $('#fullname').val();
 
@@ -126,7 +136,7 @@
                             username,
                             fullname
                         },
-                        success: function(data) {
+                        success: function (data) {
                             $('#error').html('')
                             $('#username').val('')
                             $('#fullname').val('')
@@ -137,7 +147,7 @@
                     $('#error').html('<p class="alert alert-danger">Something does wrong</p>')
                 }
             })
-            $(document).on('click', '.update', function() {
+            $(document).on('click', '.update', function () {
                 let id = $(this).attr('id')
                 let action = 'getUser'
                 $.ajax({
@@ -148,18 +158,18 @@
                         id
                     },
                     dataType: 'json',
-                    success: function(data) {
+                    success: function (data) {
                         $('#id_user').val(id)
                         $('#userID').val(data.id)
                         $('#username').val(data.username)
                         $('#fullname').val(data.fullname)
-                            // $('#action').text('Update ' + data.username)
+                        // $('#action').text('Update ' + data.username)
                         $('#action').hide()
                         $('#update').show()
                     }
                 })
             })
-            $(document).on('click', '#update', function() {
+            $(document).on('click', '#update', function () {
                 let action = 'update'
                 let id = $('#userID').val()
                 let username = $('#username').val()
@@ -176,7 +186,7 @@
                             username,
                             fullname
                         },
-                        success: function(data) {
+                        success: function (data) {
                             if (data === 'success') {
                                 $('#username').val('')
                                 $('#fullname').val('')
@@ -190,7 +200,7 @@
                     })
                 }
             })
-            $(document).on('click', '.delete', function() {
+            $(document).on('click', '.delete', function () {
                 let id = $(this).attr('id')
                 let action = 'delete'
                 if (confirm("Do you want to delete this?")) {
@@ -201,7 +211,7 @@
                             action,
                             id
                         },
-                        success: function(data) {
+                        success: function (data) {
                             selectUser()
                         }
                     })
@@ -219,7 +229,7 @@
                 data: {
                     action
                 },
-                success: function(data) {
+                success: function (data) {
                     $('#result').html(data)
                 }
             })
