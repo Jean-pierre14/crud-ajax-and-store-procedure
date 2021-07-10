@@ -15,9 +15,11 @@
     <div class="container">
         <div class="row justify-content-center my-2">
             <div class="col-md-4">
+                <h3>Users</h3>
                 <div id="results"></div>
             </div>
             <div class="col-md-4">
+                <h3>Attended Users</h3>
                 <div id="attended"></div>
             </div>
         </div>
@@ -32,6 +34,7 @@
                 method: 'post',
                 data: { action: "yes", id },
                 success: function (data) {
+
                     select()
                     attended()
                 }

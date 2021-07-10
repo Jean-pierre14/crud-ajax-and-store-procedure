@@ -38,20 +38,47 @@ if(isset($_POST['action'])){
         print $output;
     }
     if($_POST['action'] == 'select'){
+        $dateNow = date('Y-m-d');
         $sql = mysqli_query($con, "SELECT * FROM users");
         if(@mysqli_num_rows($sql) > 0){
             $output .= '<ul class="list-group">';
             while($row = mysqli_fetch_array($sql)):
-                $dateNow = date('Y-m-d');
-                
-                $output .= '
-                <li class="list-group-item d-flex justify-content-between align-item-center">
-                <span>'.$row['fullname'].' '.$dateNow.'</span>
+               
+
+                $att = mysqli_query($con, "SELECT * FROM users CROSS JOIN attendance");
+                if(@mysqli_fetch_array($att)>0):
+                    $d = mysqli_fetch_array($att);
+                    if($d['attended'] == $dateNow):
+                        $output .= '
+                <li class="list-group-item list-group-item-primary d-flex justify-content-between align-item-center">
+                <span>'.$row['fullname'].'</span>
                 <span class="btn-group">
                     <button type="button" class="btn btn-sm btn-primary yes" id="'.$row['id'].'">Yes</button>
                     <button type="button" class="btn btn-sm btn-warning no" id="'.$row['id'].'">No</button>
                 </span>
                 </li>';
+                    else:
+                        $output .= '
+                <li class="list-group-item d-flex justify-content-between align-item-center">
+                <span>'.$row['fullname'].'</span>
+                <span class="btn-group">
+                    <button type="button" class="btn btn-sm btn-primary yes" id="'.$row['id'].'">Yes</button>
+                    <button type="button" class="btn btn-sm btn-warning no" id="'.$row['id'].'">No</button>
+                </span>
+                </li>';
+                    endif;
+                else:
+                    $output .= '
+                <li class="list-group-item d-flex justify-content-between align-item-center">
+                <span>'.$row['fullname'].'</span>
+                <span class="btn-group">
+                    <button type="button" class="btn btn-sm btn-primary yes" id="'.$row['id'].'">Yes</button>
+                    <button type="button" class="btn btn-sm btn-warning no" id="'.$row['id'].'">No</button>
+                </span>
+                </li>';
+                endif;
+                
+                
             endwhile;
             $output .= '</ul>';
         }else{
