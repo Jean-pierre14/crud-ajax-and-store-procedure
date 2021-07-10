@@ -5,7 +5,8 @@ $con = mysqli_connect("localhost", "root", "", "crudajax") or die("Can't be conn
 $output = '';
 if(isset($_POST['action'])){
     if($_POST['action'] == 'attended'){
-        $sql = mysqli_query($con, "SELECT * FROM users INNER JOIN attendance ON users.id=attendance.user_id");
+        $today = date('Y-m-d');
+        $sql = mysqli_query($con, "SELECT * FROM users INNER JOIN attendance ON users.id=attendance.user_id WHERE attended = '$today'");
         if(@mysqli_num_rows($sql) > 0){
             $output .= '<ul class="list-group">';
             while($row = mysqli_fetch_array($sql)):
@@ -37,7 +38,7 @@ if(isset($_POST['action'])){
         print $output;
     }
     if($_POST['action'] == 'select'){
-        $sql = mysqli_query($con, "SELECT * FROM users UNION SELECT * FROM attendance");
+        $sql = mysqli_query($con, "SELECT * FROM users");
         if(@mysqli_num_rows($sql) > 0){
             $output .= '<ul class="list-group">';
             while($row = mysqli_fetch_array($sql)):
