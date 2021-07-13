@@ -58,8 +58,14 @@ if (isset($_POST['action'])) {
 
             $output .= '<div class="list-group mt-2">';
 
-            while ($row = mysqli_fetch_array($sql)) {
-                // if ($row['id'] == $data['users_id']) :
+            while ($row = mysqli_fetch_array($sql)):
+                $date = date('Y-m-d');
+                if($row['today'] == $date):
+                    $output .= '
+                <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '
+                    <button type="button" class="btn btn-sm btn-success">See</button>
+                </li>';
+                else:
                     $output .= '
                 <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '
                     <div class="btn-group delete">
@@ -67,16 +73,8 @@ if (isset($_POST['action'])) {
                         <button type="button" class="btn btn-sm btn-danger">Not Approuved</button>
                     </div>
                 </li>';
-                // else :
-                //     $output .= '
-                //     <li href="#" class="list-group-item d-flex justify-content-between align-items-center">' . $row['fullname'] . '
-                //         <div class="btn-group delete">
-                //             <button class="btn btn-sm btn-success">Approuved</button>
-                //             <button class="btn btn-sm btn-danger">Not Approuved</button>
-                //         </div>
-                //     </li>';
-                // endif;
-            }
+                endif;
+            endwhile;
             $output .= '</div>';
         } else {
             $output .= '<p class="alert alert-danger">There no data</p>';
