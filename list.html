@@ -40,6 +40,18 @@
                 }
             })
         })
+        $(document).on("click", ".no", function () {
+            let id = $(this).attr('id')
+            $.ajax({
+                url: './config/attendance.php',
+                method: 'POST',
+                data: { action: "no", id },
+                success: function (data) {
+                    select()
+                    attended()
+                }
+            })
+        })
         attended()
         function attended() {
             $.ajax({

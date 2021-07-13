@@ -26,8 +26,36 @@
         </div>
     </div>
     <script src="./public/js/jquery-3.4.0.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="./public/js/att.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+    <!-- <script src="./public/js/att.js"></script> -->
+    <script>
+        $(document).ready(function () {
+            select()
+            $(document).on("click", ".yes", function () {
+                let id = $(this).attr('id')
+                alert(id)
+                $.ajax({
+                    url: './config/att.php',
+                    method: 'POST',
+                    data: { action: 'yes', id },
+                    success: function (data) {
+                        select()
+                    }
+                })
+            })
+        })
+
+        function select() {
+            $.ajax({
+                url: './config/att.php',
+                method: 'POST',
+                data: { action: 'select' },
+                success: function (data) {
+                    $('#results').html(data)
+                }
+            })
+        }
+    </script>
 
 </body>
 
