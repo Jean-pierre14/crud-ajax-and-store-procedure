@@ -5,6 +5,13 @@ $con = mysqli_connect("localhost", "root", "", "crudajax") or die("Can't be conn
 $output = '';
 $dateNow = date('Y-m-d');
 if(isset($_POST['action'])){
+    if($_POST['action'] == 'TodayIsToday'){
+        $sql = mysqli_query($con, "SELECT today FROM users");
+        $row = mysqli_fetch_array($sql);
+        if($row['today'] != $today || $row['today'] == 'no'){
+            mysqli_query($con, "UPDATE users SET `today` = ''");
+        }
+    }
     if($_POST['action'] == 'attended'){
         $today = date('Y-m-d');
         $sql = mysqli_query($con, "SELECT * FROM users INNER JOIN attendance ON users.id=attendance.user_id WHERE attended = '$today'");

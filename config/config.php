@@ -50,6 +50,7 @@ if (isset($_POST['action'])) {
         }
         print $output;
     }
+    
     if ($_POST['action'] == 'attendance') {
         $sql = mysqli_query($con, "SELECT * FROM users ORDER BY id DESC");
         if (@mysqli_num_rows($sql) > 0) {
@@ -62,9 +63,9 @@ if (isset($_POST['action'])) {
                 $date = date('Y-m-d');
                 if($row['today'] == $date):
                     $output .= '
-                <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '
-                    <button type="button" class="btn btn-sm btn-success">See</button>
-                </li>';
+                    <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '
+                        <button type="button" class="btn btn-sm btn-success">See</button>
+                    </li>';
                 else:
                     $output .= '
                 <li class="list-group-item list-group-item-success d-flex justify-content-between align-items-center">' . $row['fullname'] . '

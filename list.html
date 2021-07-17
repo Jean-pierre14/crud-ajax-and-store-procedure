@@ -53,6 +53,17 @@
             })
         })
         attended()
+        TodayIsToday()
+        function TodayIsToday() {
+            $.ajax({
+                url: './config/config.php',
+                method: 'POST',
+                data: { action: 'TodayIsToday' },
+                success: function (data) {
+                    attended()
+                }
+            })
+        }
         function attended() {
             $.ajax({
                 url: './config/attendance.php',
