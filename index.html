@@ -120,8 +120,34 @@
     <script src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
     <script>
+        const Resutls = document.getElementById('result');
+
         $(document).ready(function () {
             selectUser()
+            $('#search').keyup(function(){
+                let txt = $(this).val()
+                let text = txt.trim()
+                
+                if(text !== ''){
+                    // console.log('Text ' + text) // Test
+                    Resutls.innerHTML = ''
+                    let action = 'search'
+
+                    $.ajax({
+                        url: './config/config.php',
+                        method: 'POST',
+                        data: {
+                            action,
+                            text
+                        },
+                        success: function (data) {
+                            Resutls.innerHTML = data
+                        }
+                    })
+                }else{
+                    selectUser()
+                }
+            })
             $('#action').click(function () {
                 let username = $('#username').val();
                 let fullname = $('#fullname').val();
