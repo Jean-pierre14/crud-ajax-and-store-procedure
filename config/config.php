@@ -9,7 +9,28 @@ if (isset($_POST['action'])) {
     if($_POST['action'] == 'search'){
         $text = mysqli_real_escape_string($con, htmlentities(trim($_POST['text'])));
 
-        print $text;
+        if(empty($text)){
+            $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+        }else{
+            $sql = mysqli_query($con, "SELECT * FROM users WHERE username LIKE '%{$text}%' OR email LIKE '%{$text}%' OR rollnumber LIKE '%{$text}%'");
+            if($sql){
+                if(@mysqli_num_rows($sql) > 0){
+                    while($row = mysqli_fetch_array($sql)){
+                        $output .= '
+                        <p class="alert alert-success d-flex justify-content-between align-item-center">
+                            <span>'.$row['username'].'</span>
+                            <small>'.$row['email'].'</small>
+                        </p>';   
+                    }
+                }else{
+                    $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+                }
+            }else{
+                $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+            }
+        }
+
+        print $output;
     }
     if($_POST['action'] == 'count'){
         $sql = mysqli_query($con, "SELECT COUNT(id) AS countId FROM children");
