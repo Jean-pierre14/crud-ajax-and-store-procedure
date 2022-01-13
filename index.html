@@ -17,112 +17,122 @@
 
 <body>
 
-    <nav class="navbar navbar-expand-sm bg-secondary">
+    <nav class="navbar navbar-expand-md bg-dark justify-content-between fixed-top navbar-dark">
+        <!-- Brand -->
+        <a class="navbar-brand" href="index.html">
+            <img src="https://avatars.githubusercontent.com/u/58594917?v=4" style="width: 35px;" alt="Jean-pierre14" class="img-fluid">
+        </a>
     
-        <!-- Links -->
-        <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="index.html">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="addMore.html">Add more</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="list.html">attendance</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="add.html">Serialize</a>
-            </li>
-        </ul>
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <!-- Navbar links -->
+        <div class=" collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+            
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="addMore.html">Add more</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="list.html">attendance</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="add.html">Serialize</a>
+                </li>
+            </ul>
+        </div>
     </nav>
-
-    <div class="container-fluid">
-        
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-4 mt-3">
-                    <div class="card card-body">
-                        <a href="https://avatars.githubusercontent.com/u/58594917?v=4">
-                            <img src="https://avatars.githubusercontent.com/u/58594917?v=4" alt="" class="card-img-top">
-                        </a>
-                        <form action="" method="post">
-                            <div id="error"></div>
-                            <div class="form-group">
-                                <input type="hidden" id="userID" placeholder="User Id" class="form-control">
-                                <label for="username">Username</label>
-                                <input type="text" name="username" id="username" value="" placeholder="Username"
-                                    class="form-control">
-                            </div>
-                            <div class="form-group">
-                                <label for="fullname">Fullname</label>
-                                <input type="text" name="fullname" id="fullname" placeholder="Fullname" value=""
-                                    class="form-control">
-                            </div>
-                            <div class="form-group mt-2">
-                                <input type="hidden" id="id_user" name="id_u">
-                                <button name="register" type="button" id="action"
-                                    class="UpUser btn btn-success">Register</button>
-                                <button name="register" type="button" id="update" class="btn btn-warning"
-                                    style="display: none">Update</button>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card card-body">
-                        <div id="map"></div>
-                    </div>
-                    <div class="my-2 card card-body">
-                        <h3>Thank you</h3>
-                        <p>
-                            This project can help you to undestand HTML and CSS with <b>Bootstrap4</b>. We use <b>Jquery
-                                Ajax method</b> to send and get data.
-                        </p>
-                        <p>
-                            To the <b>Back-end</b> or <b>Server</b> PHP and <b>Mysql</b>
-                        </p>
-                        <h3>Add also a search box</h3>
-                    </div>
-                </div>
-                <div class="col-md-8 mt-3">
-                    <div class="card card-body">
-                        <form action="" method="post">
-                            <input type="search" name="search" id="search" placeholder="Search..." class="form-control">
-                        </form>
-                        <div id="result">
-                            <table class="table table-sm">
-                                <thead>
-                                    <tr>
-                                        <th width="30%">Username</th>
-                                        <th width="50%">Fullname</th>
-                                        <th width="20%">Events</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>User name</td>
-                                        <td>Full name</td>
-                                        <td>
-                                            <div class="btn-sm btn-group events">
-                                                <a href="" class="btn btn-info">edit</a>
-                                                <a href="" class="btn btn-danger">Delete</a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <th>Username</th>
-                                        <th>Fullname</th>
-                                        <th>Events</th>
-                                    </tr>
-                                </tfoot>
-
-                            </table>
+    
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mt-3">
+                <div class="card card-body">
+                    <a href="https://avatars.githubusercontent.com/u/58594917?v=4">
+                        <img src="https://avatars.githubusercontent.com/u/58594917?v=4" alt="" class="card-img-top">
+                    </a>
+                    <form action="" method="post">
+                        <div id="error"></div>
+                        <div class="form-group">
+                            <input type="hidden" id="userID" placeholder="User Id" class="form-control">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" value="" placeholder="Username"
+                                class="form-control">
                         </div>
+                        <div class="form-group">
+                            <label for="fullname">Fullname</label>
+                            <input type="text" name="fullname" id="fullname" placeholder="Fullname" value=""
+                                class="form-control">
+                        </div>
+                        <div class="form-group mt-2">
+                            <input type="hidden" id="id_user" name="id_u">
+                            <button name="register" type="button" id="action"
+                                class="UpUser btn btn-success">Register</button>
+                            <button name="register" type="button" id="update" class="btn btn-warning"
+                                style="display: none">Update</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card card-body">
+                    <div id="map"></div>
+                </div>
+                <div class="my-2 card card-body">
+                    <h3>Thank you</h3>
+                    <p>
+                        This project can help you to undestand HTML and CSS with <b>Bootstrap4</b>. We use <b>Jquery
+                            Ajax method</b> to send and get data.
+                    </p>
+                    <p>
+                        To the <b>Back-end</b> or <b>Server</b> PHP and <b>Mysql</b>
+                    </p>
+                    <h3>Add also a search box</h3>
+                </div>
+            </div>
+            <div class="col-md-8 mt-3">
+                <div class="card card-body">
+                    <form action="" method="post">
+                        <input type="search" name="search" id="search" placeholder="Search..." class="form-control">
+                    </form>
+                    <div id="result">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th width="30%">Username</th>
+                                    <th width="50%">Fullname</th>
+                                    <th width="20%">Events</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>User name</td>
+                                    <td>Full name</td>
+                                    <td>
+                                        <div class="btn-sm btn-group events">
+                                            <a href="" class="btn btn-info">edit</a>
+                                            <a href="" class="btn btn-danger">Delete</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>Username</th>
+                                    <th>Fullname</th>
+                                    <th>Events</th>
+                                </tr>
+                            </tfoot>
+    
+                        </table>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
     <script>
         function initMap() {
             let options = {
