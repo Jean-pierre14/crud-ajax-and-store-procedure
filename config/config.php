@@ -10,7 +10,7 @@ if (isset($_POST['action'])) {
         $text = mysqli_real_escape_string($con, htmlentities(trim($_POST['text'])));
 
         if(empty($text)){
-            $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+            $output = '<p class="my-2 alert alert-danger">We can\'t find this '.$text.'</p>';
         }else{
             $sql = mysqli_query($con, "SELECT * FROM users WHERE username LIKE '%{$text}%' OR email LIKE '%{$text}%' OR rollnumber LIKE '%{$text}%'");
             if($sql){
@@ -23,10 +23,10 @@ if (isset($_POST['action'])) {
                         </p>';   
                     }
                 }else{
-                    $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+                    $output = '<p class="my-2 alert alert-danger">We can\'t find this '.$text.'</p>';
                 }
             }else{
-                $output = '<p class="my-2">We can\'t find this '.$text.'</p>';
+                $output = '<p class="my-2 alert alert-danger">We can\'t find this '.$text.'</p>';
             }
         }
 
