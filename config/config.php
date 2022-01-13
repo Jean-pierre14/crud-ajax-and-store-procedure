@@ -6,6 +6,11 @@ $output = "";
 $errors = array();
 
 if (isset($_POST['action'])) {
+    if($_POST['action'] == 'search'){
+        $text = mysqli_real_escape_string($con, htmlentities(trim($_POST['text'])));
+
+        print $text;
+    }
     if($_POST['action'] == 'count'){
         $sql = mysqli_query($con, "SELECT COUNT(id) AS countId FROM children");
         $row = mysqli_fetch_array($sql);
@@ -39,14 +44,18 @@ if (isset($_POST['action'])) {
         $sql = mysqli_query($con, "SELECT id, username FROM users ORDER BY `username` ASC");
 
         if(@mysqli_num_rows($sql) > 0){
+
             $output .= '<select name="user_id" class="form-control">
             <option value="">-- Select --</option>';
             while($row = mysqli_fetch_array($sql)){
                 $output .= '<option value="'.$row['id'].'">'.$row['username'].'</option>';
             }
             $output .= '</select>';
+
         }else{
+
             $output .= '<p class="alert alert-danger p-1 text-center>There is no user registered</p>';
+            
         }
         print $output;
     }
