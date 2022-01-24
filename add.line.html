@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jean-Pierre14</title>
+    <link rel="shortcut icon" href="https://avatars.githubusercontent.com/u/58594917?v=4" type="image/x-icon">
+    <link rel="stylesheet" href="./public/css/bootstrap.min.css">
+    <script src="./public/js/jquery-3.4.0.min.js"></script>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="alert alert-info">
+            <h2>Add data to the same  line</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card card-body shadow-sm">
+                    <form action="#" method="post" autocomplete="off">
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" name="username" id="username" placeholder="Username" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="sname">Second name</label>
+                            <input type="text" name="sname" id="sname" placeholder="Second name" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="desc">Description</label>
+                            <textarea name="desc" id="desc" placeholder="Description..." class="form-control"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">Record</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-md-8" id="results">
+                <table class="table table-striped">
+                    <thead>
+                        <th>Username</th>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span>Second name</span><br>
+                                <span>
+                                    Description
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Qui reiciendis.
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let xhr = new XMLHttpRequest()
+        xhr.onload = ()=> {
+            if(xhr.readyState === XMLHttpRequest.DONE){
+                if(xhr.status === 200){
+                    let data = xhr.response
+                    // console.log(data)
+                    document.getElementById('results').innerHTML = data
+                }
+            }
+        }
+        xhr.open("POST", "./config/add.line.php", true)
+        xhr.send()
+    </script>
+</body>
+</html>
